@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grid System with Search Bar</title>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 5px;
+            padding: 20px;
+        }
+
+        .grid-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            background-color: green; /* Set grid items to green by default */
+        }
+
+        .grid-item.not-found {
+            display: none; /* Hide grid items with not-found class */
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #333; /* Set background color for the search bar */
+            padding: 10px;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0; /* Set background color for the input */
+            color: #333; /* Set text color for the input */
+        }
+    </style>
+</head>
+<body>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search..." oninput="filterItems()">
+    </div>
+
+    <div class="grid-container">
+        <div class="grid-item" style="background-color: green;">jumbo bog 1</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 2</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 3</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 4</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 5</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 6</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 7</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 8</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 9</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 10</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 11</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 12</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 13</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 14</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 15</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 16</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 17</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 18</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 19</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 20</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 21</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 22</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 23</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 24</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 25</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 26</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 27</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 28</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 29</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 30</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 31</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 32</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 33</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 34</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 35</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 36</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 37</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 38</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 39</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 40</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 41</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 42</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 43</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 44</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 45</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 46</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 47</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 48</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 49</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 50</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 51</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 52</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 53</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 54</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 55</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 56</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 57</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 58</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 59</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 60</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 61</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 62</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 63</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 64</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 65</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 66</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 67</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 68</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 69</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 70</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 71</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 72</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 73</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 74</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 75</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 76</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 77</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 78</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 79</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 80</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 81</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 82</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 83</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 84</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 85</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 86</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 87</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 88</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 89</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 90</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 91</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 92</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 93</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 94</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 95</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 96</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 97</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 98</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 99</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 100</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 101</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 102</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 103</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 104</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 105</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 106</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 107</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 108</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 109</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 110</div>
+        <!-------------------------------------------------------------------------->
+        <div class="grid-item" style="background-color: green;">jumbo bog 111</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 112</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 113</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 114</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 115</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 116</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 117</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 118</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 119</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 120</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 121</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 122</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 123</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 124</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 125</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 126</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 127</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 128</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 129</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 130</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 131</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 132</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 133</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 134</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 135</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 136</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 137</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 138</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 139</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 140</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 141</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 142</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 143</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 144</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 145</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 146</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 147</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 148</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 149</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 150</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 151</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 152</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 153</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 154</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 155</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 156</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 157</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 158</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 159</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 160</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 161</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 162</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 163</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 164</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 165</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 166</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 167</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 168</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 169</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 170</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 171</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 172</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 173</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 174</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 175</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 176</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 177</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 178</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 179</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 180</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 181</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 182</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 183</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 184</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 185</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 186</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 187</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 188</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 189</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 190</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 191</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 192</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 193</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 194</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 195</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 196</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 197</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 198</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 199</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 200</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 201</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 202</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 203</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 204</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 205</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 206</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 207</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 208</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 209</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 210</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 211</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 212</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 213</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 214</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 215</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 216</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 217</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 218</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 219</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 220</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 221</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 222</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 223</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 224</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 225</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 226</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 227</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 228</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 229</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 230</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 231</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 232</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 233</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 234</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 235</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 236</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 237</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 238</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 239</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 240</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 241</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 242</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 243</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 244</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 245</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 246</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 247</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 248</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 249</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 250</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 251</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 252</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 253</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 254</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 255</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 256</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 257</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 258</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 259</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 260</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 261</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 262</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 263</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 264</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 265</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 266</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 267</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 268</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 269</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 270</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 271</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 272</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 273</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 274</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 275</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 276</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 277</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 278</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 279</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 280</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 281</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 282</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 283</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 284</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 285</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 286</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 287</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 288</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 289</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 290</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 291</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 292</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 293</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 294</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 295</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 296</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 297</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 298</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 299</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 300</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 301</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 302</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 303</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 304</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 305</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 306</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 307</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 308</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 309</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 310</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 311</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 312</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 313</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 314</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 315</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 316</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 317</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 318</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 319</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 320</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 321</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 322</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 323</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 324</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 325</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 326</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 327</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 328</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 329</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 330</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 331</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 332</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 333</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 334</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 335</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 336</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 337</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 338</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 339</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 340</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 341</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 342</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 343</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 344</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 345</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 346</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 347</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 348</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 349</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 350</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 351</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 352</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 353</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 354</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 355</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 356</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 357</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 358</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 359</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 360</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 361</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 362</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 363</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 364</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 365</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 366</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 367</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 368</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 369</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 370</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 371</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 372</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 373</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 374</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 375</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 376</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 377</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 378</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 379</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 380</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 381</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 382</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 383</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 384</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 385</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 386</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 387</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 388</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 389</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 390</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 391</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 392</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 393</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 394</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 395</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 396</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 397</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 398</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 399</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 400</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 401</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 402</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 403</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 404</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 405</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 406</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 407</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 408</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 409</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 410</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 411</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 412</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 413</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 414</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 415</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 416</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 417</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 418</div>
+        <div class="grid-item" style="background-color: green;">jumbo bog 419</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 420</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 421</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 422</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 423</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 424</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 425</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 426</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 427</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 428</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 429</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 430</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 431</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 432</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 433</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 434</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 435</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 436</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 437</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 438</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 439</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 440</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 441</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 442</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 443</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 444</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 445</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 446</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 447</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 448</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 449</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 450</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 451</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 452</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 453</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 454</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 455</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 456</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 457</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 458</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 459</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 460</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 461</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 462</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 463</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 464</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 465</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 466</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 467</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 468</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 469</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 470</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 471</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 472</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 473</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 474</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 475</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 476</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 477</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 478</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 479</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 480</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 481</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 482</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 483</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 484</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 485</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 486</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 487</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 488</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 489</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 490</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 491</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 492</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 493</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 494</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 495</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 496</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 497</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 498</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 499</div>
+        <div class="grid-item" style="background-color: red;">jumbo bog 500</div>
+    </div>
+
+    <script>
+        function filterItems() {
+            let input = document.getElementById('searchInput');
+            let filter = input.value.toUpperCase();
+            let gridItems = document.querySelectorAll('.grid-item');
+
+            gridItems.forEach(item => {
+                let text = item.textContent || item.innerText;
+                if (text.toUpperCase().indexOf(filter) > -1) {
+                    item.classList.remove('not-found');
+                } else {
+                    item.classList.add('not-found');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
