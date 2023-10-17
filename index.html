@@ -5,7 +5,7 @@
     <style>
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(10, 1fr);
             gap: 5px;
             padding: 20px;
         }
@@ -35,6 +35,20 @@
             border: 1px solid #ccc;
             background-color: #f0f0f0; /* Set background color for the input */
             color: #333; /* Set text color for the input */
+        }
+
+        @media screen and (max-width: 768px) {
+            /* Apply styles for screens with a maximum width of 768px (typical for mobile devices) */
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr); /* Adjust the grid to 2 columns for mobile */
+                gap: 10px;
+            }
+            .grid-item {
+                padding: 5px; /* Reduce padding for mobile */
+            }
+            input[type="text"] {
+                width: 100%; /* Make the search input full width for mobile */
+            }
         }
     </style>
 </head>
