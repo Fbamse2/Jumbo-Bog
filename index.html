@@ -13,6 +13,17 @@
             gap: 5px;
             padding: 20px;
         }
+        
+        .image-container {
+            display: flex;
+            justify-content: space-between; /* Adjust as needed for spacing */
+        }
+
+        .image-container img {
+            max-width: 50%; /* Adjust the width as needed */
+            max-height: auto;
+        }
+
 
         .grid-item {
             position: relative;
@@ -100,6 +111,13 @@
             color: #fff;
             cursor: pointer;
         }
+
+        .image_size
+        {
+            width: 60px; 
+            height: 90px;
+        }
+
     </style>
 </head>
 <body>
@@ -250,7 +268,12 @@
         <div class="grid-item" style="background-color: red;">jumbo bog 139</div>
         <div class="grid-item" style="background-color: green;">jumbo bog 140</div>
         <div class="grid-item" style="background-color: red;">jumbo bog 141</div>
-        <div class="grid-item clickable" style="background-color: green;">jumbo bog 142<br><img style="width: 50px; height: auto;" src="Bøger/Jumbo 142 Front.png"></div>
+
+        <div class="grid-item clickable" style="background-color: green;">jumbo bog 142<br>
+            <img class="clickable-image image_size" src="Bøger/Jumbo 142 Back.png" alt="Back">
+            <img class="clickable-image image_size" src="Bøger/Jumbo 142 Front.png" alt="Front">
+        </div>
+
         <div class="grid-item" style="background-color: green;">jumbo bog 143</div>
         <div class="grid-item" style="background-color: red;">jumbo bog 144</div>
         <div class="grid-item" style="background-color: red;">jumbo bog 145</div>
@@ -258,7 +281,11 @@
         <div class="grid-item" style="background-color: red;">jumbo bog 147</div>
         <div class="grid-item" style="background-color: green;">jumbo bog 148</div>
         <div class="grid-item" style="background-color: green;">jumbo bog 149</div>
-        <div class="grid-item clickable" style="background-color: green;">jumbo bog 150<br><img style="width: 50px; height: auto;" src="Bøger/Jumbo 150 Front.png"></div>
+
+        <div class="grid-item clickable" style="background-color: green;">jumbo bog 150<br>
+            <img class="clickable-image image_size" src="Bøger/Jumbo 150 Back.png" alt="Back">
+            <img class="clickable-image image_size" src="Bøger/Jumbo 150 Front.png" alt="Front">
+        </div>
         <div class="grid-item" style="background-color: red;">jumbo bog 151</div>
         <div class="grid-item" style="background-color: red;">jumbo bog 152</div>
         <div class="grid-item" style="background-color: red;">jumbo bog 153</div>
@@ -622,7 +649,7 @@
             let input = document.getElementById('searchInput');
             let filter = input.value.toUpperCase();
             let gridItems = document.querySelectorAll('.grid-item');
-
+    
             gridItems.forEach(item => {
                 let text = item.textContent || item.innerText;
                 if (text.toUpperCase().indexOf(filter) > -1) {
@@ -632,26 +659,26 @@
                 }
             });
         }
-
+    
         // Function to open an image in full-screen
         function openFullScreen(imageUrl) {
             document.getElementById('fullScreenImage').src = imageUrl;
             document.getElementById('fullScreenOverlay').style.display = 'block';
         }
-
+    
         // Function to close the full-screen image
         function closeFullScreen() {
             document.getElementById('fullScreenOverlay').style.display = 'none';
             document.getElementById('fullScreenImage').src = '';
         }
-
-        // Add click event listeners to clickable grid items
-        const clickableItems = document.querySelectorAll('.clickable');
-        clickableItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const img = item.querySelector('img');
-                if (img) {
-                    openFullScreen(img.src);
+    
+        // Add click event listeners to clickable images within the grid item
+        const clickableImages = document.querySelectorAll('.clickable-image');
+        clickableImages.forEach(image => {
+            image.addEventListener('click', () => {
+                const imageUrl = image.src;
+                if (imageUrl) {
+                    openFullScreen(imageUrl);
                 }
             });
         });
