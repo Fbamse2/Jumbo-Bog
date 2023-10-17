@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Jumbo bog</title>
+    <title>Grid System with Search Bar</title>
     <style>
         body {
             background-color: gray;
@@ -15,65 +15,91 @@
         }
 
         .grid-item {
+            position: relative;
+            /* Relative positioning for the image container */
             border: 1px solid #ccc;
             padding: 10px;
             text-align: center;
-            background-color: green; /* Set grid items to green by default */
+            background-color: green;
+            /* Set grid items to green by default */
+            cursor: pointer;
+            /* Add cursor pointer to indicate it's clickable */
+        }
+
+        .grid-item img {
+            max-width: 100%;
+            max-height: 100%;
         }
 
         .grid-item.not-found {
-            display: none; /* Hide grid items with not-found class */
+            display: none;
+            /* Hide grid items with not-found class */
         }
 
         .search-bar {
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #333; /* Background color of the search bar */
+            background-color: #333;
+            /* Background color of the search bar */
             padding: 10px;
-            border-bottom: 2px solid #555; /* Add a bottom border for separation */
+            border-bottom: 2px solid #555;
+            /* Add a bottom border for separation */
         }
 
         input[type="text"] {
             width: 100%;
             padding: 10px;
-            border: 2px solid #ccc; /* Border around the input */
-            background-color: #f0f0f0; /* Input background color */
-            color: #333; /* Text color for the input */
-            border-radius: 5px; /* Rounded corners for the input */
+            border: 2px solid #ccc;
+            /* Border around the input */
+            background-color: #f0f0f0;
+            /* Input background color */
+            color: #333;
+            /* Text color for the input */
+            border-radius: 5px;
+            /* Rounded corners for the input */
         }
 
         input[type="text"]::placeholder {
-            color: #555; /* Placeholder text color */
+            color: #555;
+            /* Placeholder text color */
         }
 
         input[type="text"]:focus {
-            outline: none; /* Remove the default focus border */
-            border-color: #007BFF; /* Input border color when focused */
+            outline: none;
+            /* Remove the default focus border */
+            border-color: #007BFF;
+            /* Input border color when focused */
         }
 
-        input[type="text"] {
-            width: 300px;
-            padding: 5px;
-            border: 1px solid #ccc;
-            background-color: #f0f0f0; /* Set background color for the input */
-            color: #333; /* Set text color for the input */
+        .full-screen-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 999;
         }
 
-        @media screen and (max-width: 768px) {
-            /* Apply styles for screens with a maximum width of 768px (typical for mobile devices) */
-            .grid-container {
-                grid-template-columns: repeat(2, 1fr); /* Adjust the grid to 2 columns for mobile */
-                gap: 10px;
-            }
-            .grid-item {
-                padding: 5px; /* Reduce padding for mobile */
-            }
-            input[type="text"] {
-                width: 100%; /* Make the search input full width for mobile */
-            }
+        .full-screen-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 500px;
+            max-height: auto;
         }
 
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 50px;
+            color: #fff;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -224,7 +250,7 @@
         <div class="grid-item" style="background-color: red;">jumbo bog 139</div>
         <div class="grid-item" style="background-color: green;">jumbo bog 140</div>
         <div class="grid-item" style="background-color: red;">jumbo bog 141</div>
-        <div class="grid-item" style="background-color: green;">jumbo bog 142</div>
+        <div class="grid-item clickable" style="background-color: green;">jumbo bog 142<br><img style="width: 50px; height: auto;" src="Bøger/Jumbo 142 Front.png"></div>
         <div class="grid-item" style="background-color: green;">jumbo bog 143</div>
         <div class="grid-item" style="background-color: red;">jumbo bog 144</div>
         <div class="grid-item" style="background-color: red;">jumbo bog 145</div>
@@ -232,7 +258,7 @@
         <div class="grid-item" style="background-color: red;">jumbo bog 147</div>
         <div class="grid-item" style="background-color: green;">jumbo bog 148</div>
         <div class="grid-item" style="background-color: green;">jumbo bog 149</div>
-        <div class="grid-item" style="background-color: green;">jumbo bog 150</div>
+        <div class="grid-item clickable" style="background-color: green;">jumbo bog 150<br><img style="width: 50px; height: auto;" src="Bøger/Jumbo 150 Front.png"></div>
         <div class="grid-item" style="background-color: red;">jumbo bog 151</div>
         <div class="grid-item" style="background-color: red;">jumbo bog 152</div>
         <div class="grid-item" style="background-color: red;">jumbo bog 153</div>
@@ -585,6 +611,12 @@
         <div class="grid-item" style="background-color: red;">jumbo bog 500</div>
     </div>
 
+    <!-- Full-screen overlay for images -->
+    <div class="full-screen-overlay" id="fullScreenOverlay">
+        <span class="close-button" id="closeButton" onclick="closeFullScreen()">×</span>
+        <img class="full-screen-image" id="fullScreenImage" src="" alt="Full-Screen Image">
+    </div>
+
     <script>
         function filterItems() {
             let input = document.getElementById('searchInput');
@@ -600,6 +632,29 @@
                 }
             });
         }
+
+        // Function to open an image in full-screen
+        function openFullScreen(imageUrl) {
+            document.getElementById('fullScreenImage').src = imageUrl;
+            document.getElementById('fullScreenOverlay').style.display = 'block';
+        }
+
+        // Function to close the full-screen image
+        function closeFullScreen() {
+            document.getElementById('fullScreenOverlay').style.display = 'none';
+            document.getElementById('fullScreenImage').src = '';
+        }
+
+        // Add click event listeners to clickable grid items
+        const clickableItems = document.querySelectorAll('.clickable');
+        clickableItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                if (img) {
+                    openFullScreen(img.src);
+                }
+            });
+        });
     </script>
 </body>
 </html>
