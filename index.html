@@ -3,6 +3,10 @@
 <head>
     <title>Grid System with Search Bar</title>
     <style>
+        body {
+            background-color: gray;
+        }
+
         .grid-container {
             display: grid;
             grid-template-columns: repeat(10, 1fr);
@@ -25,8 +29,27 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #333; /* Set background color for the search bar */
+            background-color: #333; /* Background color of the search bar */
             padding: 10px;
+            border-bottom: 2px solid #555; /* Add a bottom border for separation */
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ccc; /* Border around the input */
+            background-color: #f0f0f0; /* Input background color */
+            color: #333; /* Text color for the input */
+            border-radius: 5px; /* Rounded corners for the input */
+        }
+
+        input[type="text"]::placeholder {
+            color: #555; /* Placeholder text color */
+        }
+
+        input[type="text"]:focus {
+            outline: none; /* Remove the default focus border */
+            border-color: #007BFF; /* Input border color when focused */
         }
 
         input[type="text"] {
@@ -50,6 +73,7 @@
                 width: 100%; /* Make the search input full width for mobile */
             }
         }
+
     </style>
 </head>
 <body>
